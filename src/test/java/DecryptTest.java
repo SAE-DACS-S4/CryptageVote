@@ -18,7 +18,7 @@ public class DecryptTest {
 
     @Test
     public void getDecryptM(){
-        BigInteger m = decrypt.getM();
+        BigInteger m = decrypt.getMessageDecrypte();
         assertEquals(BigInteger.ONE, m, "Le message déchiffré n'est pas correct");
     }
 }
