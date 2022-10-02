@@ -69,4 +69,39 @@ public class KeyGenTest {
         //on teste si h = g^x mod p
         assertEquals(h, g.modPow(x, p), "h != g^x mod p");
     }
+
+    @Test
+    public void testClesFinal() {
+        int taille = 50;
+        KeyGen keyGen = new KeyGen(taille);
+
+        BigInteger p = keyGen.getPublicKey().get("p");
+        BigInteger g = keyGen.getPublicKey().get("g");
+        BigInteger h = keyGen.getPublicKey().get("h");
+
+        BigInteger x = keyGen.getPrivateKey();
+
+        BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
+        //on teste si p est bien de la taille demandée
+        assertEquals(taille, p.bitLength(), "La taille de p n'est pas correcte");
+
+        //on teste si p est bien premier
+        assertTrue(p.isProbablePrime(100), "p n'est pas premier");
+
+        //on teste si p est bien de la forme p = 2p' + 1 avec p' premier
+        assertTrue(pPrime.isProbablePrime(100), "p n'est pas de la forme p = 2p' + 1 avec p' premier");
+
+        //on teste si g est bien compris entre 0 et p-1
+        assertTrue(g.compareTo(BigInteger.ZERO) >= 0 && g.compareTo(p.subtract(BigInteger.ONE)) <= 0, "g n'est pas compris entre 0 et p-1");
+
+        //on test si g^p' = 1 mod p
+        assertEquals(g.modPow(pPrime, p), BigInteger.ONE, "g^p' != 1 mod p");
+
+        //on teste si x est bien compris entre 0 et p'-1
+        assertTrue(x.compareTo(BigInteger.ZERO) >= 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) <= 0, "x n'est pas compris entre 0 et p'-1");
+
+        //on teste si h = g^x mod p
+        assertEquals(h, g.modPow(x, p), "h != g^x mod p");
+
+    }
 }
