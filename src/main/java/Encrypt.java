@@ -16,5 +16,12 @@ public class Encrypt {
     }
 
     public BigInteger encryptV(BigInteger r) {
+
+        return null;
+    }
+
+    public HashMap<String, BigInteger> getEncrypt() {
+
+        return null;
     }
 }
