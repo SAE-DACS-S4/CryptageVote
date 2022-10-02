@@ -9,7 +9,7 @@ public class KeyGenTest {
 
 
     @Test
-    public void testTirerPremierP(){
+    public void testTirerPremierP() {
         int taille = 50;
         KeyGen keyGen = new KeyGen(taille);
         BigInteger p = keyGen.tirerPremierP();
@@ -26,7 +26,7 @@ public class KeyGenTest {
     }
 
     @Test
-    public void testTirerElementG(){
+    public void testTirerElementG() {
         int taille = 50;
         KeyGen keyGen = new KeyGen(taille);
 
@@ -43,7 +43,7 @@ public class KeyGenTest {
     }
 
     @Test
-    public void testTirerEntierX(){
+    public void testTirerEntierX() {
         int taille = 50;
         KeyGen keyGen = new KeyGen(taille);
 
@@ -56,7 +56,7 @@ public class KeyGenTest {
     }
 
     @Test
-    public void testCalculerH(){
+    public void testCalculerH() {
         int taille = 50;
         KeyGen keyGen = new KeyGen(taille);
 
