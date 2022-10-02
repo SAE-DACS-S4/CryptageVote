@@ -41,7 +41,7 @@ public class KeyGen {
             elementG = new BigInteger(p.bitLength(), new Random());
 
             //test si elementG est dans l'intervalle [0, p-1]
-            if (elementG.compareTo(BigInteger.ZERO) > 0 && elementG.compareTo(p.subtract(BigInteger.ONE)) < 0) {
+            if (elementG.compareTo(BigInteger.ZERO) > 0 || elementG.compareTo(p.subtract(BigInteger.ONE)) < 0) {
 
                 BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
                 //test si elementG^p' = 1 mod p
