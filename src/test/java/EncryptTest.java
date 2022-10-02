@@ -52,21 +52,5 @@ public class EncryptTest {
         assertEquals(v, g.modPow(message, p).multiply(h.modPow(r, p)).mod(p), "v != g^m * h^r mod p");
     }
 
-    @Test
-    public void testGetEncrypt() {
-        HashMap<String, BigInteger> encryptResult = this.encrypt.getEncrypt();
 
-        BigInteger r = this.encrypt.tirerR();
-        //on teste si u = g^r mod p
-        BigInteger u = encryptResult.get("u");
-        //on teste si u = g^r mod p
-        BigInteger g = pk.get("g");
-        BigInteger p = pk.get("p");
-        assertEquals(u, g.modPow(r, p), "u != g^r mod p");
-
-        //on teste si v = g^m * h^r mod p
-        BigInteger v = encryptResult.get("v");
-        BigInteger h = pk.get("h");
-        assertEquals(v, g.modPow(message, p).multiply(h.modPow(r, p)).mod(p), "v != g^m * h^r mod p");
-    }
 }
