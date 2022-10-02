@@ -15,14 +15,14 @@ public class KeyGenTest {
         BigInteger p = keyGen.tirerPremierP();
 
         //on teste si p est bien de la taille demandée
-        assertEquals(p.bitCount(), taille);
+        assertEquals(taille, p.bitLength(), "La taille de p n'est pas correcte");
 
         //on teste si p est bien premier
-        assertTrue(p.isProbablePrime(100));
+        assertTrue(p.isProbablePrime(100), "p n'est pas premier");
 
         //on teste si p est bien de la forme p = 2p' + 1 avec p' premier
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
-        assertTrue(pPrime.isProbablePrime(100));
+        assertTrue(pPrime.isProbablePrime(100), "p n'est pas de la forme p = 2p' + 1 avec p' premier");
     }
 
     @Test
@@ -35,11 +35,11 @@ public class KeyGenTest {
         BigInteger g = keyGen.tirerElementG(p);
 
         //on teste si g est bien compris entre 0 et p-1
-        assertTrue(g.compareTo(BigInteger.ZERO) > 0 && g.compareTo(p.subtract(BigInteger.ONE)) < 0);
+        assertTrue(g.compareTo(BigInteger.ZERO) > 0 && g.compareTo(p.subtract(BigInteger.ONE)) < 0, "g n'est pas compris entre 0 et p-1");
 
         //on test si g^p' = 1 mod p
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
-        assertEquals(g.modPow(pPrime, p), BigInteger.ONE);
+        assertEquals(g.modPow(pPrime, p), BigInteger.ONE, "g^p' != 1 mod p");
     }
 
     @Test
@@ -52,7 +52,7 @@ public class KeyGenTest {
 
         //on teste si x est bien compris entre 0 et p'-1
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
-        assertTrue(x.compareTo(BigInteger.ZERO) > 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) < 0);
+        assertTrue(x.compareTo(BigInteger.ZERO) > 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) < 0, "x n'est pas compris entre 0 et p'-1");
     }
 
     @Test
@@ -67,6 +67,6 @@ public class KeyGenTest {
         BigInteger h = keyGen.calculerH(g, x, p);
 
         //on teste si h = g^x mod p
-        assertEquals(h, g.modPow(x, p));
+        assertEquals(h, g.modPow(x, p), "h != g^x mod p");
     }
 }
