@@ -18,7 +18,7 @@ public class EncryptTest {
     Encrypt encrypt = new Encrypt(pk, message);
 
     @Test
-    public void tirerR() {
+    public void testTirerR() {
         BigInteger r = encrypt.tirerR();
 
         //on teste si r est bien compris entre 0 et p'-1
@@ -26,4 +26,5 @@ public class EncryptTest {
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
         assertTrue(r.compareTo(BigInteger.ZERO) >= 0 && r.compareTo(pPrime.subtract(BigInteger.ONE)) <= 0, "r n'est pas compris entre 0 et p'-1");
     }
+
 }
