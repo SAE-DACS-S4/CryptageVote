@@ -35,7 +35,7 @@ public class KeyGenTest {
         BigInteger g = keyGen.tirerElementG(p);
 
         //on teste si g est bien compris entre 0 et p-1
-        assertTrue(g.compareTo(BigInteger.ZERO) > 0 && g.compareTo(p.subtract(BigInteger.ONE)) < 0, "g n'est pas compris entre 0 et p-1");
+        assertTrue(g.compareTo(BigInteger.ZERO) >= 0 && g.compareTo(p.subtract(BigInteger.ONE)) <= 0, "g n'est pas compris entre 0 et p-1");
 
         //on test si g^p' = 1 mod p
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
@@ -52,7 +52,7 @@ public class KeyGenTest {
 
         //on teste si x est bien compris entre 0 et p'-1
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
-        assertTrue(x.compareTo(BigInteger.ZERO) > 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) < 0, "x n'est pas compris entre 0 et p'-1");
+        assertTrue(x.compareTo(BigInteger.ZERO) >= 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) <= 0, "x n'est pas compris entre 0 et p'-1");
     }
 
     @Test
