@@ -1,17 +1,23 @@
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.Random;
 
 public class KeyGen {
 
-    private int taille;
-    private BigInteger p;
-    private BigInteger g;
-    private BigInteger x;
-    private BigInteger h;
+    private final int taille;
+    private final BigInteger p;
+    private final BigInteger g;
+    private final BigInteger x;
+    private final BigInteger h;
 
 
     public KeyGen(int taille) {
         this.taille = taille;
+
+        this.p = tirerPremierP();
+        this.g = tirerElementG(p);
+        this.x = tirerEntierX(p);
+        this.h = calculerH(g, x, p);
     }
 
     public BigInteger tirerPremierP() {
@@ -22,7 +28,6 @@ public class KeyGen {
             pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
         }
 
-        this.p = p;
         return p;
     }
 
@@ -38,7 +43,6 @@ public class KeyGen {
                 //test si g^p' = 1 mod p
                 if (g.modPow(pPrime, p).equals(BigInteger.ONE)) {
                     gBonneForme = true;
-                    this.g = g;
                 }
             }
         }
@@ -53,14 +57,23 @@ public class KeyGen {
         while (x.compareTo(BigInteger.ZERO) < 0 || x.compareTo(pPrime.subtract(BigInteger.ONE)) > 0) {
             x = new BigInteger(pPrime.bitLength(), new Random());
         }
-
-        this.x = x;
         return x;
     }
 
     public BigInteger calculerH(BigInteger g, BigInteger x, BigInteger p) {
-        BigInteger h = g.modPow(x, p);
-        this.h = h;
+        return g.modPow(x, p);
+    }
+
+    public BigInteger getPublicKey() {
+        HashMap<String, BigInteger> publicKey = new HashMap<>();
+        publicKey.put("p", p);
+        publicKey.put("g", g);
+        publicKey.put("h", h);
+
         return h;
+    }
+
+    public BigInteger getPrivateKey() {
+        return x;
     }
 }
