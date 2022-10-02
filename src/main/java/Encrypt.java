@@ -6,6 +6,10 @@ public class Encrypt {
     private HashMap<String, BigInteger> pk;
     private BigInteger message;
 
+    private BigInteger r;
+    private BigInteger u;
+    private BigInteger v;
+
     public Encrypt(HashMap<String, BigInteger> pk, BigInteger message) {
         this.pk = pk;
         this.message = message;
@@ -23,13 +27,18 @@ public class Encrypt {
             r = new BigInteger(pPrime.bitLength(), rand);
         }
 
-        System.out.println(r);
+        this.r = r;
         return r;
     }
 
     public BigInteger encryptU(BigInteger r) {
+        BigInteger g = this.pk.get("g");
+        BigInteger p = this.pk.get("p");
 
-        return null;
+        BigInteger u = g.modPow(r, p);
+
+        this.u = u;
+        return u;
     }
 
     public BigInteger encryptV(BigInteger r) {
