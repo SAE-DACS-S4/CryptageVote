@@ -46,8 +46,16 @@ public class KeyGen {
     }
 
     public BigInteger tirerEntierX(BigInteger p) {
+        BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
+        BigInteger x = new BigInteger(pPrime.bitLength(), new Random());
 
-        return null;
+        //test si x est dans l'intervalle [0, p'-1]
+        while (x.compareTo(BigInteger.ZERO) < 0 || x.compareTo(pPrime.subtract(BigInteger.ONE)) > 0) {
+            x = new BigInteger(pPrime.bitLength(), new Random());
+        }
+
+        this.x = x;
+        return x;
     }
 
     public BigInteger calculerH(BigInteger g, BigInteger x, BigInteger p) {
