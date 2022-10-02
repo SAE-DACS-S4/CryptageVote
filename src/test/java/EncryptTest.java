@@ -38,4 +38,18 @@ public class EncryptTest {
         BigInteger p = pk.get("p");
         assertEquals(u, g.modPow(r, p), "u != g^r mod p");
     }
+
+    @Test
+    public void testEncryptV() {
+        BigInteger r = encrypt.tirerR();
+
+        BigInteger v = encrypt.encryptV(r);
+
+        //on teste si v = g^m * h^r mod p
+        BigInteger h = pk.get("h");
+        BigInteger p = pk.get("p");
+        BigInteger g = pk.get("g");
+        assertEquals(v, g.modPow(message, p).multiply(h.modPow(r, p)).mod(p), "v != g^m * h^r mod p");
+    }
+
 }

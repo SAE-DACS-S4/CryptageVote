@@ -14,4 +14,7 @@ public class Encrypt {
 
         return null;
     }
+
+    public BigInteger encryptV(BigInteger r) {
+    }
 }
