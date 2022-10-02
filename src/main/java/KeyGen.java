@@ -59,7 +59,8 @@ public class KeyGen {
     }
 
     public BigInteger calculerH(BigInteger g, BigInteger x, BigInteger p) {
-        
-        return null;
+        BigInteger h = g.modPow(x, p);
+        this.h = h;
+        return h;
     }
 }
