@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
@@ -7,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KeyGenTest {
 
+    int taille = 50;
+    KeyGen keyGen = new KeyGen(taille);
 
     @Test
     public void testTirerPremierP() {
-        int taille = 50;
-        KeyGen keyGen = new KeyGen(taille);
         BigInteger p = keyGen.tirerPremierP();
 
         //on teste si p est bien de la taille demandée
@@ -27,9 +29,6 @@ public class KeyGenTest {
 
     @Test
     public void testTirerElementG() {
-        int taille = 50;
-        KeyGen keyGen = new KeyGen(taille);
-
         BigInteger p = keyGen.tirerPremierP();
 
         BigInteger g = keyGen.tirerElementG(p);
@@ -44,9 +43,6 @@ public class KeyGenTest {
 
     @Test
     public void testTirerEntierX() {
-        int taille = 50;
-        KeyGen keyGen = new KeyGen(taille);
-
         BigInteger p = keyGen.tirerPremierP();
         BigInteger x = keyGen.tirerEntierX(p);
 
@@ -57,9 +53,6 @@ public class KeyGenTest {
 
     @Test
     public void testCalculerH() {
-        int taille = 50;
-        KeyGen keyGen = new KeyGen(taille);
-
         BigInteger p = keyGen.tirerPremierP();
         BigInteger g = keyGen.tirerElementG(p);
         BigInteger x = keyGen.tirerEntierX(p);
@@ -72,9 +65,6 @@ public class KeyGenTest {
 
     @Test
     public void testClesFinal() {
-        int taille = 50;
-        KeyGen keyGen = new KeyGen(taille);
-
         BigInteger p = keyGen.getPublicKey().get("p");
         BigInteger g = keyGen.getPublicKey().get("g");
         BigInteger h = keyGen.getPublicKey().get("h");
