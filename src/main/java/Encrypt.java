@@ -9,4 +9,9 @@ public class Encrypt {
     public BigInteger tirerR() {
         return null;
     }
+
+    public BigInteger encryptU(BigInteger r) {
+
+        return null;
+    }
 }

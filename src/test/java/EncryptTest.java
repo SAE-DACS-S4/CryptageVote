@@ -27,4 +27,15 @@ public class EncryptTest {
         assertTrue(r.compareTo(BigInteger.ZERO) >= 0 && r.compareTo(pPrime.subtract(BigInteger.ONE)) <= 0, "r n'est pas compris entre 0 et p'-1");
     }
 
+    @Test
+    public void testEncryptU() {
+        BigInteger r = encrypt.tirerR();
+
+        BigInteger u = encrypt.encryptU(r);
+
+        //on teste si u = g^r mod p
+        BigInteger g = pk.get("g");
+        BigInteger p = pk.get("p");
+        assertEquals(u, g.modPow(r, p), "u != g^r mod p");
+    }
 }
