@@ -54,4 +54,19 @@ public class KeyGenTest {
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
         assertTrue(x.compareTo(BigInteger.ZERO) > 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) < 0);
     }
+
+    @Test
+    public void testCalculerH(){
+        int taille = 50;
+        KeyGen keyGen = new KeyGen(taille);
+
+        BigInteger p = keyGen.tirerPremierP();
+        BigInteger g = keyGen.tirerElementG(p);
+        BigInteger x = keyGen.tirerEntierX(p);
+
+        BigInteger h = keyGen.calculerH(g, x, p);
+
+        //on teste si h = g^x mod p
+        assertEquals(h, g.modPow(x, p));
+    }
 }

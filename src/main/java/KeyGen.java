@@ -20,4 +20,9 @@ public class KeyGen {
 
         return null;
     }
+
+    public BigInteger calculerH(BigInteger g, BigInteger x, BigInteger p) {
+        
+        return null;
+    }
 }
