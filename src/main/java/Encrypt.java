@@ -13,6 +13,10 @@ public class Encrypt {
     public Encrypt(HashMap<String, BigInteger> pk, BigInteger message) {
         this.pk = pk;
         this.message = message;
+
+        this.r = tirerR();
+        this.u = encryptU(this.r);
+        this.v = encryptV(this.r);
     }
 
 
@@ -55,6 +59,10 @@ public class Encrypt {
 
     public HashMap<String, BigInteger> getEncrypt() {
 
-        return null;
+        HashMap<String, BigInteger> encrypt = new HashMap<String, BigInteger>();
+        encrypt.put("u", this.u);
+        encrypt.put("v", this.v);
+        return encrypt;
     }
+
 }
