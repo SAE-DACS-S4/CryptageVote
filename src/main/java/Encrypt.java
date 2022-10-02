@@ -43,7 +43,14 @@ public class Encrypt {
 
     public BigInteger encryptV(BigInteger r) {
 
-        return null;
+        BigInteger g = this.pk.get("g");
+        BigInteger p = this.pk.get("p");
+        BigInteger h = this.pk.get("h");
+
+        BigInteger v = g.modPow(this.message, p).multiply(h.modPow(r, p)).mod(p);
+
+        this.v = v;
+        return v;
     }
 
     public HashMap<String, BigInteger> getEncrypt() {
