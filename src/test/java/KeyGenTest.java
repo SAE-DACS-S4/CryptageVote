@@ -26,7 +26,7 @@ public class KeyGenTest {
     }
 
     @Test
-    public void testEtapeDeux(){
+    public void testTirerElementG(){
         int taille = 50;
         KeyGen keyGen = new KeyGen(taille);
 
@@ -41,4 +41,5 @@ public class KeyGenTest {
         BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
         assertEquals(g.modPow(pPrime, p), BigInteger.ONE);
     }
+
 }
