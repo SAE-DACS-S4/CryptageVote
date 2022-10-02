@@ -42,4 +42,16 @@ public class KeyGenTest {
         assertEquals(g.modPow(pPrime, p), BigInteger.ONE);
     }
 
+    @Test
+    public void testTirerEntierX(){
+        int taille = 50;
+        KeyGen keyGen = new KeyGen(taille);
+
+        BigInteger p = keyGen.tirerPremierP();
+        BigInteger x = keyGen.tirerEntierX(p);
+
+        //on teste si x est bien compris entre 0 et p'-1
+        BigInteger pPrime = (p.subtract(BigInteger.ONE)).divide(BigInteger.valueOf(2));
+        assertTrue(x.compareTo(BigInteger.ZERO) > 0 && x.compareTo(pPrime.subtract(BigInteger.ONE)) < 0);
+    }
 }

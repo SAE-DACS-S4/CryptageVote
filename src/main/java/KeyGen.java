@@ -15,4 +15,9 @@ public class KeyGen {
 
         return null;
     }
+
+    public BigInteger tirerEntierX(BigInteger p) {
+
+        return null;
+    }
 }
