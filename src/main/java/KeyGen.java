@@ -1,5 +1,13 @@
+import java.math.BigInteger;
+
 public class KeyGen {
 
-    //debut
 
+    public KeyGen(int taille) {
+    }
+
+    public BigInteger etapeUn() {
+
+        return null;
+    }
 }
