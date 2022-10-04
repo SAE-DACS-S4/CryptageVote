@@ -1,3 +1,5 @@
+package Concept;
+
 import java.math.BigInteger;
 import java.util.HashMap;
 
@@ -8,7 +10,7 @@ public class mainTest{
         System.out.println("La clé privée est : " + keyGen.getPrivateKey());
         System.out.println("La clé publique est : " + keyGen.getPublicKey());
 
-        BigInteger vote1 = BigInteger.ONE;
+        BigInteger vote1 = BigInteger.valueOf(1);
         BigInteger vote2 = BigInteger.ONE;
         BigInteger vote3 = BigInteger.ZERO;
         BigInteger vote4 = BigInteger.ZERO;
@@ -47,7 +49,6 @@ public class mainTest{
         System.out.println("Nombre de votants = 7");
         System.out.println("Le message déchiffré est : " + decrypt.getMessageDecrypte());
         System.out.println("il y a " + decrypt.getMessageDecrypte() + " votants pour la proposition 1");
-
 
     }
 }
