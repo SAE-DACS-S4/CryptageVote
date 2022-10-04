@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KeyGenTest {
 
-    int taille = 50;
+    int taille = 10;
     KeyGen keyGen = new KeyGen(taille);
 
     @Test
