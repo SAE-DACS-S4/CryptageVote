@@ -11,6 +11,11 @@ public class MessageCrypte {
     private BigInteger u;
     private BigInteger v;
 
+    /**
+     * MessageCrypte génère un message crypté à partir d'un message clair et d'une clé publique générée à l'aide de la classe KeyGenCryptage
+     * @param message message clair à crypter de type int
+     * @param pk clé publique de type PublicKey
+     */
     public MessageCrypte(int message, PublicKey pk) {
         HashMap<String, BigInteger> hashMapPK = new HashMap<String, BigInteger>();
         hashMapPK.put("p", pk.getP());
@@ -30,14 +35,20 @@ public class MessageCrypte {
         this.v = v;
     }
 
-    public BigInteger getU() {
+    private BigInteger getU() {
         return this.u;
     }
 
-    public BigInteger getV() {
+    private BigInteger getV() {
         return this.v;
     }
 
+    /**
+     * Permet l'addition de deux messages cryptés
+     * @param messageCrypte premier message crypté de type MessageCrypte
+     * @param pk clé publique de type PublicKey
+     * @return l'agrégation (la somme) des deux messages cryptés de type MessageCrypte
+     */
     public MessageCrypte agregate(MessageCrypte messageCrypte, PublicKey pk) {
         HashMap<String, BigInteger> hashMapPK = new HashMap<String, BigInteger>();
         hashMapPK.put("p", pk.getP());
@@ -59,6 +70,12 @@ public class MessageCrypte {
         return new MessageCrypte(messageAgreg.get("u"), messageAgreg.get("v"));
     }
 
+    /**
+     * Permet de décrypter un message crypté à l'aide d'une clé privée
+     * @param pk clé privée de type PrivateKey
+     * @param sk clé publique de type PublicKey
+     * @return le message clair de type int
+     */
     public int decrypt(PrivateKey sk, PublicKey pk) {
 
         HashMap<String, BigInteger> messageCrypte = new HashMap<String, BigInteger>();
