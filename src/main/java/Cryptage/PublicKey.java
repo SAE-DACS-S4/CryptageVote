@@ -1,8 +1,9 @@
 package Cryptage;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class PublicKey {
+public class PublicKey implements Serializable {
     private BigInteger p;
     private BigInteger g;
     private BigInteger h;

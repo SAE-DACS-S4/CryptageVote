@@ -1,5 +1,6 @@
 package Cryptage;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ import Concept.Encrypt;
 import Concept.Decrypt;
 import Concept.Agrege;
 
-public class MessageCrypte {
+public class MessageCrypte implements Serializable {
     private BigInteger u;
     private BigInteger v;
 
@@ -93,5 +94,11 @@ public class MessageCrypte {
 
         return decrypt.getMessageDecrypte().intValue();
     }
+
+    public String toString() {
+        return "u = " + this.u + " v = " + this.v;
+    }
+
+
 
 }
