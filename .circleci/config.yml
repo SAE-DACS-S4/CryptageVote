@@ -11,10 +11,13 @@ jobs:
           name: Test de l'application
           command: mvn test
 
+      - store_test_results:
+          path: target/surefire-reports
+
+      - store_artifacts:
+          path: target/site/jacoco
 
 workflows:
   IntegrationContinue:
     jobs:
       - test
-            
-            
