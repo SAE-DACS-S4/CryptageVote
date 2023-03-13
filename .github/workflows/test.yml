@@ -13,7 +13,7 @@ jobs:
         with:
           java-version: '11'
         env:
-          GITHUB_KEY: ${{ secrets.GITHUB_KEY }}
+          GITHUB_KEY: ${{ secrets.KEY }}
         run: |
           git clone https://$GITHUB_KEY@github.com/SAE-DACS-S4/CryptageVote.git;
           cd CryptageVote;
