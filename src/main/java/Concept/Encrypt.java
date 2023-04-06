@@ -37,6 +37,10 @@ public class Encrypt {
         return r;
     }
 
+    public BigInteger getR() {
+        return this.r;
+    }
+
     public BigInteger encryptU(BigInteger r) {
         BigInteger g = this.pk.get("g");
         BigInteger p = this.pk.get("p");

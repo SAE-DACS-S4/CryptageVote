@@ -20,7 +20,6 @@ public class KeyGenCryptage {
     public KeyGenCryptage(int taille) {
         KeyGen keyGen = new KeyGen(taille);
         HashMap<String, BigInteger> hashMap = keyGen.getPublicKey();
-
         this.p = hashMap.get("p");
         this.g = hashMap.get("g");
         this.h = hashMap.get("h");
