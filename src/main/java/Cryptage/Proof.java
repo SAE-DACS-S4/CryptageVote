@@ -1,8 +1,9 @@
 package Cryptage;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Proof {
+public class Proof implements Serializable {
     private BigInteger[] challenges, answers;
 
     public void setChallenges(BigInteger[] challenges) {
