@@ -1,6 +1,31 @@
+
+# Rapport de test
+- Génération de clés ElGamal sécurisée et robuste (clés publiques et privées).
+
+[KeyGenTest.java](src%2Ftest%2Fjava%2FConcept%2FKeyGenTest.java)
+- Chiffrement correct et fiable des données de vote à l'aide du chiffrement ElGamal.
+
+[EncryptTest.java](src%2Ftest%2Fjava%2FConcept%2FEncryptTest.java)
+- Déchiffrement réussi des données de vote chiffrées avec les clés privées ElGamal.
+
+[DecryptTest.java](src%2Ftest%2Fjava%2FConcept%2FDecryptTest.java)
+- Intégrité des données de vote préservée tout au long du processus de chiffrement et de déchiffrement.
+
+[DecryptTest.java](src%2Ftest%2Fjava%2FConcept%2FDecryptTest.java)
+- Appartenance du vote à l'ensemble conditionnel à sa validité (0 ou 1) via calcul de validité du certificat ZPK.
+
+[VoteTest.java](src%2Ftest%2Fjava%2FCryptage%2FVoteTest.java)
+- Signature numérique du certificat.
+
+[VoteTest.java](src%2Ftest%2Fjava%2FCryptage%2FVoteTest.java)
+
+- Capacité du certificat ZPK à résister aux attaques par force brute ou autres attaques cryptographiques. (Démonstration formelle)
+
+[VoteTest.java](src%2Ftest%2Fjava%2FCryptage%2FVoteTest.java)
+
+
+
 # CryptageVote
-
-
 
 ## Description
 
@@ -118,10 +143,4 @@ messageCryptage1.agregate(messageCryptage2, publicKey);
 ```
 
 ## PrivateKey et PublicKey
-
 Les classes PrivateKey et PublicKey permettent de stocker des clés privées et publiques.
-
-
-
-
-

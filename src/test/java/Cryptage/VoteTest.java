@@ -18,26 +18,26 @@ public class VoteTest {
         this.keyGenCryptage = new KeyGenCryptage(256);
         control = new MessageCrypte(0, keyGenCryptage.getPublicKey());
     }
-
-    @ParameterizedTest
-    @MethodSource("errorControl")
-    void testManInTheMiddle(int message, boolean result) {
-        MessageCrypte messageCrypte = new MessageCrypte(message, keyGenCryptage.getPublicKey());
-        messageCrypte.setProof(control.getProof());
-        assertEquals(result, messageCrypte.isValid());
+    public static Stream<Arguments> normalControl() {
+        return Stream.of(
+                Arguments.of(0, true),
+                Arguments.of(1, true));
     }
-
     /*
-    Il n'est pas nécessaire de tester pour les valeurs différentes de {0,1}
-    car la classe Proof ne permet pas de générer des preuves pour des messages hors de cet ensemble.
-     */
+    Ce Test vérifie que le message crypté est valide dans un cas d'utilisation normal, il vérifie donc le bon fonctionnement de la méthode isValid().
+    Il n'est pas nécessaire de tester pour les valeurs différentes de {0,1} car la classe Proof ne permet pas de générer des preuves pour des messages hors de cet ensemble.
+    */
     @ParameterizedTest
     @MethodSource("normalControl")
     void testNormal(int message, boolean result) {
         MessageCrypte messageCrypte = new MessageCrypte(message, keyGenCryptage.getPublicKey());
         assertEquals(result, messageCrypte.isValid());
     }
-
+    /*
+    Dans le cas d'une attaque du type "Homme du milieu", le message crypté serait attaché à un certificat valide.
+    Cette méthode vérifie deux propriétés du ZPK, le certificat à une signature unique par rapport au vote, et donc un certificat valide attaché à un vote différent de celui du certificat est invalide, malgrès
+    la valeur de ce vote pouvant l'être.
+    */
     public static Stream<Arguments> errorControl() {
         return Stream.of(
                 Arguments.of(-1, false),
@@ -47,12 +47,12 @@ public class VoteTest {
                 Arguments.of(Integer.MAX_VALUE, false),
                 Arguments.of(Integer.MIN_VALUE, false));
     }
-
-    public static Stream<Arguments> normalControl() {
-        return Stream.of(
-                Arguments.of(0, true),
-                Arguments.of(1, true));
+    @ParameterizedTest
+    @MethodSource("errorControl")
+    void testManInTheMiddle(int message, boolean result) {
+        MessageCrypte messageCrypte = new MessageCrypte(message, keyGenCryptage.getPublicKey());
+        messageCrypte.setProof(control.getProof());
+        assertEquals(result, messageCrypte.isValid());
     }
-
 
 }
